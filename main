@@ -1,0 +1,283 @@
+import pickle
+from operator import itemgetter
+from time import sleep
+from tkinter import *
+
+#eleves = [["Thibault", "histoire", "français", "anglais", "maths", "123", 0, 0],["David", "français", "histoire", "anglais", "maths", "123", 0, 0], ["Lazare", "anglais", "maths", "français", "histoire", "123", 0, 0], ["Elise", "anglais", "maths", "français", "histoire", "123", 0, 0], ["Solena", "histoire", "français", "anglais", "maths", "123", 0, 0], ["Dana", "histoire", "français", "anglais", "maths", "123", 0, 0], ["Ines", "histoire", "français", "anglais", "maths", "123", 0, 0], ["Maxime", "histoire", "français", "anglais", "maths", "123", 0, 0], ["Quentin", "histoire", "français", "anglais", "maths", "123", 0, 0], ["Andrien", "histoire", "français", "anglais", "maths", "123", 0, 0], ["Raphael", "histoire", "français", "anglais", "maths", "123", 0, 0], ["Mathis", "histoire", "français", "anglais", "maths", "123", 0, 0], ["Pauline", "histoire", "français", "anglais", "maths", "123", 0, 0], ["Titouan", "histoire", "français", "anglais", "maths", "123", 0, 0], ["Nicolas", "histoire", "français", "anglais", "maths", "123", 0, 0], ["Vincent", "histoire", "français", "anglais", "maths", "123", 0, 0]]
+#profs  = [["Léo", "123", "histoire"], ["Delphine", "123", "anglais"], ["Florence", "123", "maths"]]
+#matiere = ["histoire", "maths", "anglais", "français"]
+
+pickle_in = open("list.pickle", "rb")
+eleves = pickle.load(pickle_in)
+profs = pickle.load(pickle_in)
+matiere = pickle.load(pickle_in)
+
+
+SuperUser = "123"
+i = 0
+test = 1
+test1 = 1
+
+while i == 0:
+              
+       print("")
+       print("")
+       print("Menus :")
+       print("")
+       print("0 - quitter")
+       print("1 - éspace élève")
+       print("2 - éspace professeur")
+       print("3 - éspace SuperUser")
+       print("")
+
+       menu = input("choisir Menu: ")
+
+       if menu == "0" :
+
+              i = 1
+
+       if menu == "1" :
+                     
+              connexion = input("Entrer votre nom d'utilisateur: ")
+
+              for eleve in eleves :
+
+                     if connexion == eleve[0]:
+
+                            password = input("entrez votre mot de passe : ")
+
+                            test = 0
+
+                            if password == eleve[5]:
+
+                                   eleve[1] = input("entrez votre premier choix : ")
+                                   a = eleve[1]
+                                   while eleve[1] != matiere[0] and eleve[1] != matiere[1] and eleve[1] != matiere[2] and eleve[1] != matiere[3] :
+                                     print("Matière innéxistante")
+                                     eleve[1] = input("entrez votre premier choix : ")
+                                     a = eleve[1]
+
+                                   eleve[2] = input("entrez votre deuxième choix : ")
+                                   b = eleve[2]
+                                   while eleve[2] != matiere[0] and eleve[2] != matiere[1] and eleve[2] != matiere[2] and eleve[2] != matiere[3] :
+                                     print("Matière innéxistante ")
+                                     eleve[2] = input("entrez votre deuxième choix : ")
+                                     b = eleve[2]
+                                   while eleve[2] == a:
+                                     print("matière déjà séléctionné")
+                                     eleve[2] = input("entrez votre deuxième choix : ")
+                                     b = eleve[2]
+
+                                   eleve[3] = input("entrez votre troisième choix : ")
+                                   c = eleve[3]
+                                   while eleve[3] != matiere[0] and eleve[3] != matiere[1] and eleve[3] != matiere[2] and eleve[3] != matiere[3] :
+                                     print("Matière innéxistante")
+                                     eleve[3] = input("entrez votre troisième choix : ")
+                                     c = eleve[3]
+                                   while eleve[3] == a or eleve[3] == b:
+                                     print("matière déjà séléctionné")
+                                     eleve[3] = input("entrez votre troisième choix : ")
+                                     c = eleve[3]
+
+
+                                   eleve[4] = input("entrez votre quatrième choix : ")
+                                   while eleve[4] != matiere[0] and eleve[4] != matiere[1] and eleve[4] != matiere[2] and eleve[4] != matiere[3] :
+                                     print("Matière innéxistante")
+                                     eleve[4] = input("entrez votre quatrième choix : ")
+                                   while eleve[4] == a or eleve[4] == b or eleve[4] == c:
+                                     print("matière déjà séléctionné")
+                                     eleve[4] = input("entrez votre quatrième choix : ")
+
+
+                                   print("choix bien pris en compte")
+
+                            else :
+
+                                   print("mot de passe éronné")
+
+              if test == 1:
+                     print("Nom d'utilisateur inconnue")
+              else:
+                     test = 1
+                     
+       if menu == "2":
+
+          connexion = input("Entrer votre nom d'utilisateur: ")
+
+          for prof in profs :
+
+                 if connexion == prof[0]:
+                        test1 = 0
+                        password = input("entrez votre mot de passe : ")
+                        test = 1
+
+                        if password == prof[1]:
+
+                               eleveVeto = input("Entrez le nom de élève à placer dans vore TA : ")
+
+                               for eleve in eleves :
+
+                                      if eleveVeto == eleve[0]:
+
+                                             eleve[1] = prof[2]
+                                             eleve[7] = 1
+
+                                             print(eleve[0], "serat placé dans le TA", prof[2])
+                                             
+                                             test = 0
+
+                               if test == 1:
+                                  print("Nom d'utilisateur inconnue")
+                               else:
+                                  test = 1
+                        else:
+                               print("mot de passe éroné")
+          if test1 == 1 :
+            print("Nome d'utilisateur inconnue")
+          else:
+            test1 = 0
+
+
+       if menu == "3":
+         connexion = input("Entrez votre mot de passe SuperUser : ")
+         if connexion == SuperUser:
+           print("")
+           print("Menus :")
+           print("")
+           print("0 - quitter")
+           print("1 - lancer le programme")
+           print("2 - ajouter compte")
+           print("3 - changez matière")
+           print("")
+
+           menu2 = input("menu : ")
+
+           if menu2 == "1":
+             print("")
+             print("running...")
+             sleep(2)
+             eleves.sort(key =itemgetter(6))
+             eleves.sort(key=itemgetter(7), reverse=True)
+
+             mat1 = [0]*10
+             mat2 = [0]*10
+             mat3 = [0]*10
+             mat4 = [0]*10
+             out = [0]*len(eleves)
+
+             for loop in range(len(eleves)):
+               justice = 0
+               m = 1
+               pull = 1
+
+               while m <= 4 and pull == 1:
+                
+                 if eleves[loop][m] == matiere[0] and mat1.count(0) > 0:
+                   for scoop in range(len(mat1)) :
+                     if mat1[scoop] == 0:
+                       mat1[scoop] = eleves[loop][0]
+                       pull = 0
+                       break
+
+                 elif eleves[loop][m] == matiere[1] and mat2.count(0) > 0:
+                   for scoop in range(len(mat2)):
+                     if mat2[scoop] == 0:
+                       mat2[scoop] = eleves[loop][0]
+                       pull = 0
+                       break
+
+                 elif eleves[loop][m] == matiere[2] and mat3.count(0) > 0:
+                   for scoop in range(len(mat3)):
+                     if mat3[scoop] == 0:
+                       mat3[scoop] = eleves[loop][0]
+                       pull = 0
+                       break
+
+                 elif eleves[loop][m] == matiere[3] and mat4.count(0) > 0 :
+                   for scoop in range(len(mat4)):
+                     if mat4[scoop] == 0:
+                       mat4[scoop] = eleves[loop][0]
+                       pull = 0
+                       break
+                  
+                 else :
+                   m = m + 1
+                   justice = justice + 1
+
+               if justice == 0 and eleves[loop][7] == 0 :
+                 eleves[loop][6] = eleves[loop][6] + 2
+
+               if justice == 1 and eleves[loop][7] == 0:
+                 eleves[loop][6] = eleves[loop][6] + 1
+
+               if justice == 2 and eleves[loop][7] == 0:
+                 eleves[loop][6] = eleves[loop][6] - 2
+
+               if justice == 3 and eleves[loop][7] == 0:
+                 eleves[loop][6] = eleves[loop][6] - 4
+                 
+               if m == 5:
+                 for scoop in range(len(mat3)):
+                     if out[scoop] == 0:
+                       out[scoop] = eleves[loop][0]
+                       break
+                       
+            
+             print("")
+             print("done : ")
+             print("")
+             print(matiere[0], mat1)
+             print("")
+             print(matiere[1], mat2)
+             print("")
+             print(matiere[2], mat3)
+             print("")
+             print(matiere[3], mat4)
+             print("")
+             print("non inscrit : ", out)
+             print("")
+             print(eleves)
+
+             for eleve in eleves:
+               eleve[7] = 0
+
+             a = input()
+
+           elif menu2 == "2" :
+             print("0 - quitter")
+             print("1 - élève")
+             print("2 - profs")
+
+             menu3 = input("choississez compte à changer : ")
+
+             if menu3 == "1":
+               eleves.append([input("Entrez Pseudo : "), 0 ,0 ,0 ,0 ,input("Entrez mot de passe : "), 0, 1])
+
+             if menu3 == "2":
+               profs.append([input("Entrez Pseudo : "), input("Entrez mot de passe : "), input("Entrez matière : ")])
+
+             if menu3 == "0":
+               i = 1
+
+           elif menu2 == "3":
+             matiere[0] = input("entrez la première matière : ")
+             matiere[1] = input("entrez la deuxième matière : ")
+             matiere[2] = input("entrez la deuxième matière : ")
+             matiere[3] = input("entrez la deuxième matière : ")
+
+           elif menu2 != "1" and menu != "2" and menu != "0" :
+               print("Nous n'avons pas compris votre demande")
+
+         else :
+           print("mot de passe éronné")
+          
+       if menu != "3" and menu != "2" and menu != "1" and menu != "0":
+
+        print("Nous n'avons pas compris votre demande")
+
+
+pickle_out = open("list.pickle", "wb")
+pickle.dump(eleves, pickle_out)
+pickle.dump(profs, pickle_out)
+pickle.dump(matiere, pickle_out)
+pickle_out.close()
