@@ -1,0 +1,64 @@
+h1
+{
+	
+	font-size: xx-large;
+	font-family: Arial;
+} 
+
+
+body
+{
+	background-image: url("imagedefond.jpg");
+	color: white;
+	text-align: center;
+}
+
+em
+{
+	font-family: Arial ;
+}
+
+
+
+
+
+.sous-titre
+{
+	font-size: 2em;
+	text-align: center;
+	font-weight: : bold;
+	color : #A3A2H4;
+}
+
+.image
+{
+	text-align: center;
+}
+p
+{
+	text-align: center;
+}
+
+
+
+
+
+
+h1
+{
+	text-align: center;
+	color: white;
+}
+
+
+p
+{
+	text-align: center;
+	color: white;
+}
+body
+{	
+	background-image: url(image-de-fond.jpg);
+	text-align: center;
+	color: white;
+}
